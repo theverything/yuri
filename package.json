@@ -1,7 +1,7 @@
 {
   "name": "yuri",
-  "version": "0.1.0",
-  "description": "url builder",
+  "version": "0.2.0",
+  "description": "A simple URL builder.",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./test"
@@ -11,5 +11,18 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "mocha": "^2.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theverything/yuri.git"
+  },
+  "keywords": [
+    "url",
+    "uri",
+    "builder"
+  ],
+  "bugs": {
+    "url": "https://github.com/theverything/yuri/issues"
+  },
+  "homepage": "https://github.com/theverything/yuri"
 }
