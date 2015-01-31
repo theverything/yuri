@@ -2,24 +2,31 @@ var url = require('url');
 
 var slice = Array.prototype.slice;
 var isArray = Array.isArray;
+var methods = [
+  'pathname',
+  'protocol',
+  'port',
+  'hostname',
+  'query'
+];
 
 /***************************
- * The Yuri config
+ * Yuri
  ***************************/
-var Yuri = {
-  config: function (opts) {
-    this.protocol = opts.protocol;
-  },
+var Yuri = {};
 
-  hostname: function (hostname) {
-    if (!hostname) {
-      throw new TypeError('you must have a hostname');
-    }
-
+function yuriSetup(method) {
+  return function (/*arguments*/) {
+    var args = slice.call(arguments);
     var yuri = new Builder();
-    return yuri.hostname(hostname).protocol(this.protocol);
+
+    return yuri[method].apply(yuri, args);
   }
-};
+}
+
+methods.forEach(function (method) {
+  Yuri[method] = yuriSetup(method);
+});
 
 /***************************
  *  Yuri DSL API
@@ -65,10 +72,6 @@ Builder.prototype.query = function (query) {
 };
 
 Builder.prototype.format = function () {
-  if (!this.url.protocol && this.url.hostname) {
-    this.url.protocol = 'http';
-  }
-
   return url.format(this.url);
 };
 
