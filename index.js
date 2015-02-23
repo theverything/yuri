@@ -11,31 +11,37 @@ var methods = [
 ];
 
 /***************************
- * Yuri
+ * Yuri Factory
  ***************************/
-var Yuri = {};
-
-function yuriSetup(method) {
+function yuriFactory(method) {
   return function (/*arguments*/) {
     var args = slice.call(arguments);
-    var yuri = new Builder();
+    var yuri = new Yuri({});
 
     return yuri[method].apply(yuri, args);
   }
 }
 
 methods.forEach(function (method) {
-  Yuri[method] = yuriSetup(method);
+  Yuri[method] = yuriFactory(method);
 });
 
 /***************************
- *  Yuri DSL API
+ *  Yuri
  ***************************/
-function Builder() {
-  this.url = {};
+function Yuri(config) {
+  if (!(this instanceof Yuri)) {
+    return new Yuri(config);
+  }
+
+  if (typeof config === 'string') {
+    this.url = url.parse(config);
+  } else {
+    this.url = config || {};
+  }
 }
 
-Builder.prototype.pathname = function (/*arguments*/) {
+Yuri.prototype.pathname = function (/*arguments*/) {
   var args = slice.call(arguments);
 
   if (args.length === 1 && isArray(args[0])) {
@@ -47,31 +53,31 @@ Builder.prototype.pathname = function (/*arguments*/) {
   return this;
 };
 
-Builder.prototype.protocol = function (protocol) {
+Yuri.prototype.protocol = function (protocol) {
   this.url.protocol = protocol;
 
   return this;
 };
 
-Builder.prototype.port = function (port) {
+Yuri.prototype.port = function (port) {
   this.url.port = port;
 
   return this;
 };
 
-Builder.prototype.hostname = function (hostname) {
+Yuri.prototype.hostname = function (hostname) {
   this.url.hostname = hostname;
 
   return this;
 };
 
-Builder.prototype.query = function (query) {
+Yuri.prototype.query = function (query) {
   this.url.query = query;
 
   return this;
 };
 
-Builder.prototype.format = function () {
+Yuri.prototype.format = function () {
   return url.format(this.url);
 };
 
