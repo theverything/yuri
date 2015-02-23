@@ -81,4 +81,6 @@ Yuri.prototype.format = function () {
   return url.format(this.url);
 };
 
+Yuri.prototype.toString = Yuri.prototype.format;
+
 module.exports = Yuri;
