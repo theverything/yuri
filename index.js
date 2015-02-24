@@ -7,7 +7,6 @@ var url = require('url');
  * Yuri API
  ***************************/
 var methods = [
-  'href', // The full URL that was originally parsed. Both the protocol and host are lowercased.
   'protocol', // The request protocol, lowercased.
   'slashes', // The protocol requires slashes after the colon
   'host', // The full lowercased host portion of the URL, including port information.
@@ -64,12 +63,6 @@ methods.forEach(function (method) {
 /***************************
  * Yuri Prototypes
  ***************************/
-Yuri.prototype.href = function (href) {
-  this.url.href = href;
-
-  return this;
-};
-
 Yuri.prototype.protocol = function (protocol) {
   this.url.protocol = protocol;
 
