@@ -4,17 +4,20 @@ var yuri = require('../');
 describe('Yuri', function () {
   it('builds a url', function () {
     var url = yuri
-              .protocol('https')
+              .protocol('mongodb')
+              .slashes(true)
+              .auth('user:password')
               .hostname('localhost')
-              .port(3000)
-              .pathname('one', 'two', 'three')
+              .port(27017)
+              .pathname('mydb')
               .query({
                 foo: 'bar',
                 fizz: 'buzz'
               })
+              .hash('myhash')
               .format();
 
-    expect(url).to.equal('https://localhost:3000/one/two/three?foo=bar&fizz=buzz');
+    expect(url).to.equal('mongodb://user:password@localhost:27017/mydb?foo=bar&fizz=buzz#myhash');
   });
 
   it('can use array for pathname', function () {
