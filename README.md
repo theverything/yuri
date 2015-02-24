@@ -10,6 +10,8 @@ It is just a simple abstraction over the node `url.format` method.
 
 ## Usage
 
+You can build a url from scratch.
+
 ``` javascript
 var yuri = require('yuri');
 
@@ -22,6 +24,37 @@ var uri = yuri
             fizz: 'buzz'
           })
           .format();
+
+console.log(uri) // "http://mydomain.com/my/path?foo=bar&fizz=buzz"
+```
+
+Or you can initialize yuri with either a [url object](http://nodejs.org/api/url.html#url_url) or a url string.
+
+``` javascript
+var yuri = require('yuri');
+
+var uri = yuri({
+            protocol: 'http',
+            hostname: 'mydomain.com'
+          })
+          .pathname('my', 'path')
+          .query({
+            foo: 'bar',
+            fizz: 'buzz'
+          })
+          .format();
+
+// Or
+
+var uri = yuri('http://mydomain.com')
+          .pathname('my', 'path')
+          .query({
+            foo: 'bar',
+            fizz: 'buzz'
+          })
+          .format();
+
+
 
 console.log(uri) // "http://mydomain.com/my/path?foo=bar&fizz=buzz"
 ```
