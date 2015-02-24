@@ -18,7 +18,7 @@ var yuri = require('yuri');
 var uri = yuri
           .protocol('http')
           .hostname('mydomain.com')
-          .pathname('my', 'path')
+          .pathname('my/path')
           .query({
             foo: 'bar',
             fizz: 'buzz'
@@ -37,7 +37,7 @@ var uri = yuri({
             protocol: 'http',
             hostname: 'mydomain.com'
           })
-          .pathname('my', 'path')
+          .pathname('my/path')
           .query({
             foo: 'bar',
             fizz: 'buzz'
@@ -47,7 +47,7 @@ var uri = yuri({
 // Or
 
 var uri = yuri('http://mydomain.com')
-          .pathname('my', 'path')
+          .pathname('my/path')
           .query({
             foo: 'bar',
             fizz: 'buzz'
