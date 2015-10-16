@@ -101,7 +101,10 @@ Yuri.prototype.port = function (port) {
 
 Yuri.prototype.pathname = function (pathname) {
   if (Array.isArray(pathname)) {
-    this.url.pathname = pathname.join('/');
+    this.url.pathname = pathname.map(function (p, i) {
+      if (i === pathname.length - 1) return p.replace(/^\//, '');
+      return p.replace(/^\/|\/$/g, '');
+    }).join('/');
   } else {
     this.url.pathname = pathname;
   }

@@ -71,6 +71,8 @@ var uri = yuri
 console.log(uri) // "my/path/name"
 ```
 
+For more expamples check out the tests.
+
 ## License
 
 The MIT License (MIT)
