@@ -47,6 +47,14 @@ describe('Yuri', function () {
     expect(url).to.equal('http://www.zillow.com/one/two/three');
   });
 
+  it('formats pathname with strings and ints', function(){
+    var url = yuri('http://www.zillow.com')
+              .pathname(['1', 'two', 3, '/four'])
+              .format();
+
+    expect(url).to.equal('http://www.zillow.com/1/two/3/four');
+  });
+
   it('formats pathname without double slashes', function () {
     var url = yuri('http://www.zillow.com')
               .pathname(['/one/', '/two/three/four/', '/five/'])
