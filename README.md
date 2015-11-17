@@ -1,5 +1,7 @@
 # Yuri
 
+[![Build Status](https://travis-ci.org/theverything/yuri.svg)](https://travis-ci.org/theverything/yuri)
+
 Yuri is a chainable url builder.
 
 It is just a simple abstraction over the node `url.format` method.
