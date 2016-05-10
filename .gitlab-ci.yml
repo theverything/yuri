@@ -1,16 +1,17 @@
-image: node:6.1
+before_script:
+  - npm install
 
-cache:
-  paths:
-  - node_modules/
-
-stages:
-  - test
-
-test_async:
-  stage: test
+test:6.1:
+  image: node:6.1
   script:
-   - npm install
    - npm test
-  tags:
-    - docker
+
+test:5.11:
+  image: node:5.11
+  script:
+   - npm test
+
+test:4.4:
+  image: node:4.4
+  script:
+   - npm test
